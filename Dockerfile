@@ -3,7 +3,7 @@ FROM ich777/debian-baseimage
 LABEL maintainer="admin@minenet.at"
 
 ENV DATA_DIR="/xlinkkaievolution"
-EVN DL_URI="https://cdn.teamxlink.co.uk/binary/kaiEngine-7.4.34-rev789.headless.el6.i686.tar.gz"
+ENV DL_URI="https://cdn.teamxlink.co.uk/binary/kaiEngine-7.4.34-rev789.headless.el6.i686.tar.gz"
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
