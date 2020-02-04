@@ -29,7 +29,7 @@ if [ ! -f ${DATA_DIR}/kaiengine.conf ]; then
 	fi
 fi
 
-
+# TODO interface selection
 
 echo "---Preparing Server---"
 chmod -R 777 ${DATA_DIR}
