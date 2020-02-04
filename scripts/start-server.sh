@@ -2,11 +2,8 @@
 echo "---Setting umask to ${UMASK}---"
 umask ${UMASK}
 
-echo "---Sleep zZz---"
-sleep infinity
-
 echo "---Checking if XLink Kai is installed---"
-if [ ! -f ${DATA_DIR}/kaiengine_x86 ]; then
+if [ ! -f ${DATA_DIR}/kaiengine ]; then
 	echo "---XLink Kai not installed, downloading---"
 	cd ${DATA_DIR}
 	if wget -q -nc --show-progress --progress=bar:force:noscroll "${DL_URI}" ; then
