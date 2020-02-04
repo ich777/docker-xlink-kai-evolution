@@ -29,7 +29,8 @@ if [ ! -f ${DATA_DIR}/kaiengine.conf ]; then
 	fi
 fi
 
-# TODO interface selection
+echo "---Setting interface to: ${INTERFACE_NAME}---"
+sed -i '/kaiAdapter=/c\kaiAdapter='${INTERFACE_NAME}'' "${DATA_DIR}/kaiengine.conf"
 
 echo "---Preparing Server---"
 chmod -R 777 ${DATA_DIR}
