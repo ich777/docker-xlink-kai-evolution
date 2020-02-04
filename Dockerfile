@@ -17,7 +17,7 @@ ENV GID=100
 RUN mkdir $DATA_DIR && \
 	useradd -d $DATA_DIR -s /bin/bash --uid $UID --gid $GID xlinkkai && \
 	chown -R xlinkkai $DATA_DIR && \
-	echo "xlinkkai ALL=(root) NOPASSWD:${DATA_DIR}/kaiengine_x86" >> /etc/sudoers && \
+	echo "xlinkkai ALL=(root) NOPASSWD:${DATA_DIR}/kaiengine" >> /etc/sudoers && \
 	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
