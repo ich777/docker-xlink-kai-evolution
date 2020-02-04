@@ -8,7 +8,7 @@ sleep infinity
 cd ${DATA_DIR}
 
 while true; do
-	${DATA_DIR}/kaiengine_x86
+	sudo ${DATA_DIR}/kaiengine_x86
     echo "---KaiEngine crashed respawning---"
 	sleep 5
 done
