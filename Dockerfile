@@ -19,6 +19,7 @@ RUN mkdir $DATA_DIR && \
 	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
+COPY /services /etc/services
 RUN chmod -R 770 /opt/scripts/ && \
 	chown -R xlinkkai /opt/scripts
 
