@@ -35,7 +35,7 @@ chmod -R 777 ${DATA_DIR}
 echo "---Starting XLink Kai---"
 cd ${DATA_DIR}
 while true; do
-	sudo ${DATA_DIR}/kaiengine_x86
+	sudo ${DATA_DIR}/kaiengine
     echo "---KaiEngine crashed respawning---"
 	sleep 5
 done
