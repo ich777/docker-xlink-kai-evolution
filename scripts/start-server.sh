@@ -13,3 +13,9 @@ cd kaiEngine*
 mv * ${DATA_DIR}
 cd ${DATA_DIR}
 rm -R kaiEngine-*
+
+while true; do
+	${DATA_DIR}/kaiengine
+    echo "---KaiEngine crashed respawning---"
+	sleep 5
+done
