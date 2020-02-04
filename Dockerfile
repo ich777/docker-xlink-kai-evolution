@@ -4,7 +4,7 @@ LABEL maintainer="admin@minenet.at"
 
 RUN dpkg --add-architecture i386 && \
 	apt-get update && \
-	apt-get -y install --no-install-recommends libc6:i386 libstdc++6:i386 libgcc-8-dev:i386 && \
+	apt-get -y install --no-install-recommends sudo libc6:i386 libstdc++6:i386 libgcc-8-dev:i386 && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/xlinkkaievolution"
@@ -16,6 +16,7 @@ ENV GID=100
 RUN mkdir $DATA_DIR && \
 	useradd -d $DATA_DIR -s /bin/bash --uid $UID --gid $GID xlinkkai && \
 	chown -R xlinkkai $DATA_DIR && \
+	echo "xlinkkai ALL=(root) NOPASSWD:${DATA_DIR}/kaiengine" >> /etc/sudoers && \
 	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
