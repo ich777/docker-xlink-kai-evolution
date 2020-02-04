@@ -9,6 +9,8 @@ RUN dpkg --add-architecture i386 && \
 
 ENV DATA_DIR="/xlinkkaievolution"
 ENV DL_URI="https://cdn.teamxlink.co.uk/binary/kaiEngine-7.4.34-rev789.headless.el6.i686.tar.gz"
+ENV INTERFACE_NAME="eth0"
+ENV START_KAI="true"
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
