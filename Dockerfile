@@ -21,8 +21,6 @@ RUN mkdir $DATA_DIR && \
 
 ADD /scripts/ /opt/scripts/
 COPY /services /etc/services
-COPY /kaiengine.conf ${DATA_DIR}/kaiengine.conf
-COPY /kaiengine_x86 ${DATA_DIR}/kaikaiengine_x86
 RUN chmod -R 770 /opt/scripts/ && \
 	chown -R xlinkkai /opt/scripts
 
