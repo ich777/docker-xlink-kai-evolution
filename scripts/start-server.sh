@@ -14,13 +14,15 @@ else
 	if [ ! -f ${DATA_DIR}/kaiengine ]; then
 		echo "---XLink Kai not installed, downloading---"
 		cd ${DATA_DIR}
-		if wget -q -nc --show-progress --progress=bar:force:noscroll -O kaiengine "$DL_URL" ; then
+		if wget -q -nc --show-progress --progress=bar:force:noscroll -O kaiengine.tar.gz "$DL_URL" ; then
 			echo "---Successfully downloaded XLink Kai---"
-	        touch ${DATA_DIR}/installedv_${LAT_V}
 		else
 			echo "---Can't download XLink Kai, putting server into sleep mode...---"
 	        sleep infinity
 		fi
+        tar -xvf ${DATA_DIR}/kaiengine.tar.gz
+        rm ${DATA_DIR}/kaiengine.tar.gz
+		touch installedv_${LAT_V}
 	else
 		if [ ! -z ${LAT_V} ]; then
 			if [ "${LAT_V}" != "$CUR_V" ]; then
@@ -28,9 +30,8 @@ else
                 rm ${DATA_DIR}/kaiengine
                 rm ${DATA_DIR}/installedv_*
                 cd ${DATA_DIR}
-          		if wget -q -nc --show-progress --progress=bar:force:noscroll -O kaiengine "$DL_URL" ; then
+          		if wget -q -nc --show-progress --progress=bar:force:noscroll -O kaiengine.tar.gz "$DL_URL" ; then
 					echo "---Successfully downloaded XLink Kai---"
-	        		touch ${DATA_DIR}/installedv_${LAT_V}
 				else
 					echo "---Can't download XLink Kai, putting server into sleep mode...---"
 	        		sleep infinity
@@ -38,8 +39,11 @@ else
 			else
             	echo "---You are currently running the latest version: v${LAT_V}---"
 			fi
+			tar -xvf ${DATA_DIR}/kaiengine.tar.gz
+			rm ${DATA_DIR}/kaiengine.tar.gz
+			touch installedv_${LAT_V}
 		else
-        	echo "---Can't get latest version number, continuing---"
+        	echo "---Can't get the latest version number, continuing...---"
 		fi
 	fi
 fi
