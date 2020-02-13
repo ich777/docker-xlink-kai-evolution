@@ -21,13 +21,19 @@ else
 	        sleep infinity
 		fi
         tar -xvf ${DATA_DIR}/kaiengine.tar.gz
-        rm ${DATA_DIR}/kaiengine.tar.gz
-		touch installedv_${LAT_V}
+        cd kaiEngine-*
+        mv * ${DATA_DIR}/
+        cd ${DATA_DIR}
+		rm ${DATA_DIR}/kaiengine.tar.gz
+        rm -R ${DATA_DIR}/kaiEngine-*
+		touch ${DATA_DIR}/installedv_${LAT_V}
 	else
 		if [ ! -z ${LAT_V} ]; then
 			if [ "${LAT_V}" != "$CUR_V" ]; then
 		    	echo "---Version missmatch currently installed: v${CUR_V}, installing: v${LAT_V}---"
+                rm ${DATA_DIR}/README
                 rm ${DATA_DIR}/kaiengine
+                rm ${DATA_DIR}/runvorever.sh
                 rm ${DATA_DIR}/installedv_*
                 cd ${DATA_DIR}
           		if wget -q -nc --show-progress --progress=bar:force:noscroll -O kaiengine.tar.gz "$DL_URL" ; then
@@ -40,8 +46,12 @@ else
             	echo "---You are currently running the latest version: v${LAT_V}---"
 			fi
 			tar -xvf ${DATA_DIR}/kaiengine.tar.gz
+            cd kaiEngine-*
+            mv * ${DATA_DIR}/
+            cd ${DATA_DIR}
 			rm ${DATA_DIR}/kaiengine.tar.gz
-			touch installedv_${LAT_V}
+            rm -R ${DATA_DIR}/kaiEngine-*
+			touch ${DATA_DIR}/installedv_${LAT_V}
 		else
         	echo "---Can't get the latest version number, continuing...---"
 		fi
