@@ -7,17 +7,41 @@ CUR_V="$(find ${DATA_DIR} -name installedv_* | cut -d "_" -f2)"
 DL_URL="$(curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep platform-linux-x86-localconf | cut -d '=' -f2)"
 
 echo "---Checking if XLink Kai is installed and up-to-date---"
-if [ ! -f ${DATA_DIR}/kaiengine ]; then
-	echo "---XLink Kai not installed, downloading---"
-	cd ${DATA_DIR}
-	if wget -q -nc --show-progress --progress=bar:force:noscroll "$DL_URL" ; then
-		echo "---Successfully downloaded XLink Kai---"
-	else
-		echo "---Can't download XLink Kai, putting server into sleep mode...---"
-        sleep infinity
-	fi
+if [ -z ${DL_URL} ]; then
+	echo "---Can't get download URL, putting server into sleep mode---"
+    sleep infinity
 else
-	
+	if [ ! -f ${DATA_DIR}/kaiengine ]; then
+		echo "---XLink Kai not installed, downloading---"
+		cd ${DATA_DIR}
+		if wget -q -nc --show-progress --progress=bar:force:noscroll -O kaiengine "$DL_URL" ; then
+			echo "---Successfully downloaded XLink Kai---"
+	        touch ${DATA_DIR}/installedv_${LAT_V}
+		else
+			echo "---Can't download XLink Kai, putting server into sleep mode...---"
+	        sleep infinity
+		fi
+	else
+		if [ ! -z ${LAT_V} ]; then
+			if [ "${LAT_V}" != "$CUR_V" ]; then
+		    	echo "---Version missmatch currently installed: v${CUR_V}, installing: v${LAT_V}---"
+                rm ${DATA_DIR}/kaiengine
+                rm ${DATA_DIR}/installedv_*
+                cd ${DATA_DIR}
+          		if wget -q -nc --show-progress --progress=bar:force:noscroll -O kaiengine "$DL_URL" ; then
+					echo "---Successfully downloaded XLink Kai---"
+	        		touch ${DATA_DIR}/installedv_${LAT_V}
+				else
+					echo "---Can't download XLink Kai, putting server into sleep mode...---"
+	        		sleep infinity
+				fi
+			else
+            	echo "---You are currently running the latest version: v${LAT_V}---"
+			fi
+		else
+        	echo "---Can't get latest version number, continuing---"
+		fi
+	fi
 fi
 
 echo "---Checking if 'kaiengine.conf' is present---"
