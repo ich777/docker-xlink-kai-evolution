@@ -7,7 +7,7 @@ CUR_V="$(find ${DATA_DIR} -name installedv_* | cut -d "_" -f2)"
 DL_URL="$(curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep platform-linux-x86-localconf | cut -d '=' -f2)"
 
 echo "---Checking if XLink Kai is installed and up-to-date---"
-if [ -z ${DL_URL} ]; then
+if [ -z $DL_URL ]; then
 	echo "---Can't get download URL, putting server into sleep mode---"
     sleep infinity
 else
@@ -22,15 +22,16 @@ else
 		fi
         tar -xvf ${DATA_DIR}/kaiengine.tar.gz
         cd kaiEngine-*
-        mv * ${DATA_DIR}/
+        mv ${DATA_DIR}/kaiEngine-*/* ${DATA_DIR}/
         cd ${DATA_DIR}
 		rm ${DATA_DIR}/kaiengine.tar.gz
         rm -R ${DATA_DIR}/kaiEngine-*
-		touch ${DATA_DIR}/installedv_${LAT_V}
+		touch ${DATA_DIR}/installedv_$LAT_V
+        CUR_V="$(find ${DATA_DIR} -name installedv_* | cut -d "_" -f2)"
 	else
-		if [ ! -z ${LAT_V} ]; then
-			if [ "${LAT_V}" != "$CUR_V" ]; then
-		    	echo "---Version missmatch currently installed: v${CUR_V}, installing: v${LAT_V}---"
+		if [ ! -z $LAT_V ]; then
+			if [ "$LAT_V" != "$CUR_V" ]; then
+		    	echo "---Version missmatch currently installed: v$CUR_V, installing: v$LAT_V---"
                 rm ${DATA_DIR}/README
                 rm ${DATA_DIR}/kaiengine
                 rm ${DATA_DIR}/runvorever.sh
@@ -43,15 +44,15 @@ else
 	        		sleep infinity
 				fi
 			else
-            	echo "---You are currently running the latest version: v${LAT_V}---"
+            	echo "---You are currently running the latest version: v$LAT_V---"
 			fi
 			tar -xvf ${DATA_DIR}/kaiengine.tar.gz
             cd kaiEngine-*
-            mv * ${DATA_DIR}/
+            mv ${DATA_DIR}/kaiEngine-*/* ${DATA_DIR}/
             cd ${DATA_DIR}
 			rm ${DATA_DIR}/kaiengine.tar.gz
             rm -R ${DATA_DIR}/kaiEngine-*
-			touch ${DATA_DIR}/installedv_${LAT_V}
+			touch ${DATA_DIR}/installedv_$LAT_V
 		else
         	echo "---Can't get the latest version number, continuing...---"
 		fi
