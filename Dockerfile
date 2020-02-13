@@ -8,7 +8,6 @@ RUN dpkg --add-architecture i386 && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/xlinkkaievolution"
-ENV DL_URI="https://github.com/ich777/docker-xlink-kai-evolution/raw/master/kaiengine"
 ENV INTERFACE_NAME="eth0"
 ENV UMASK=000
 ENV UID=99
