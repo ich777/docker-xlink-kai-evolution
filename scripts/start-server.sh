@@ -4,12 +4,13 @@ umask ${UMASK}
 
 LAT_V="$(curl -s curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep version | cut -d '=' -f2)"
 CUR_V="$(find ${DATA_DIR} -name installedv_* | cut -d "_" -f2)"
+DL_URL="$(curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep platform-linux-x86-localconf | cut -d '=' -f2)"
 
 echo "---Checking if XLink Kai is installed and up-to-date---"
 if [ ! -f ${DATA_DIR}/kaiengine ]; then
 	echo "---XLink Kai not installed, downloading---"
 	cd ${DATA_DIR}
-	if wget -q -nc --show-progress --progress=bar:force:noscroll "${DL_URI}" ; then
+	if wget -q -nc --show-progress --progress=bar:force:noscroll "$DL_URL" ; then
 		echo "---Successfully downloaded XLink Kai---"
 	else
 		echo "---Can't download XLink Kai, putting server into sleep mode...---"
