@@ -43,16 +43,16 @@ else
 					echo "---Can't download XLink Kai, putting server into sleep mode...---"
 	        		sleep infinity
 				fi
+                tar -xvf ${DATA_DIR}/kaiengine.tar.gz
+            	cd kaiEngine-*
+            	mv ${DATA_DIR}/kaiEngine-*/* ${DATA_DIR}/
+            	cd ${DATA_DIR}
+				rm ${DATA_DIR}/kaiengine.tar.gz
+            	rm -R ${DATA_DIR}/kaiEngine-*
+				touch ${DATA_DIR}/installedv_$LAT_V
 			else
             	echo "---You are currently running the latest version: v$LAT_V---"
 			fi
-			tar -xvf ${DATA_DIR}/kaiengine.tar.gz
-            cd kaiEngine-*
-            mv ${DATA_DIR}/kaiEngine-*/* ${DATA_DIR}/
-            cd ${DATA_DIR}
-			rm ${DATA_DIR}/kaiengine.tar.gz
-            rm -R ${DATA_DIR}/kaiEngine-*
-			touch ${DATA_DIR}/installedv_$LAT_V
 		else
         	echo "---Can't get the latest version number, continuing...---"
 		fi
