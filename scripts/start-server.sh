@@ -4,7 +4,7 @@ umask ${UMASK}
 
 LAT_V="$(curl -s curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep version | cut -d '=' -f2)"
 CUR_V="$(find ${DATA_DIR} -name installedv_* | cut -d "_" -f2)"
-DL_URL="$(curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep platform-linux-x86-localconf | cut -d '=' -f2)"
+DL_URL="$(curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep platform-linux-x86 | cut -d '=' -f2)"
 
 echo "---Checking if XLink Kai is installed and up-to-date---"
 if [ -z $DL_URL ]; then
