@@ -75,12 +75,18 @@ echo "---Setting interface to: ${INTERFACE_NAME}---"
 sed -i '/kaiAdapter=/c\kaiAdapter='${INTERFACE_NAME}'' "${DATA_DIR}/kaiengine.conf"
 
 echo "---Preparing Server---"
+if [ ! -d /tmp/xlinkkai ]; then
+	if [ -d /tmp ]; then
+    	mkdir /tmp
+	fi
+    mkdir /tmp/xlinkkai
+fi
 chmod -R 777 ${DATA_DIR}
 
 echo "---Starting XLink Kai---"
 cd ${DATA_DIR}
 while true; do
-	sudo ${DATA_DIR}/kaiengine
+	sudo ${DATA_DIR}/kaiengine --appdata /tmp/xlinkkai --configfile ${DATA_DIR}/kaiengine.conf ${EXTRA_PARAMS}
     echo "---KaiEngine crashed respawning---"
 	sleep 5
 done
