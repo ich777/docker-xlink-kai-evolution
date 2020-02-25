@@ -13,19 +13,19 @@ ENV EXTRA_PARAMS=""
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
+ENV DATA_PERM=770
+ENV USER="xlinkkai"
+
 
 RUN mkdir $DATA_DIR && \
-	useradd -d $DATA_DIR -s /bin/bash --uid $UID --gid $GID xlinkkai && \
-	chown -R xlinkkai $DATA_DIR && \
-	echo "xlinkkai ALL=(root) NOPASSWD:${DATA_DIR}/kaiengine" >> /etc/sudoers && \
+	useradd -d $DATA_DIR -s /bin/bash $USER && \
+	chown -R $USER $DATA_DIR && \
+	echo "$USER ALL=(root) NOPASSWD:${DATA_DIR}/kaiengine" >> /etc/sudoers && \
 	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
 COPY /services /etc/services
-RUN chmod -R 770 /opt/scripts/ && \
-	chown -R xlinkkai /opt/scripts
-
-USER xlinkkai
+RUN chmod -R 770 /opt/scripts/
 
 #Server Start
-ENTRYPOINT ["/opt/scripts/start-server.sh"]
+ENTRYPOINT ["/opt/scripts/start.sh"]
