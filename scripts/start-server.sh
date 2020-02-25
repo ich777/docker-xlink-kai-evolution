@@ -1,7 +1,4 @@
 #!/bin/bash
-echo "---Setting umask to ${UMASK}---"
-umask ${UMASK}
-
 LAT_V="$(curl -s curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep version | cut -d '=' -f2)"
 CUR_V="$(find ${DATA_DIR} -name installedv_* | cut -d "_" -f2)"
 DL_URL="$(curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep platform-linux-x86 | cut -d '=' -f2)"
@@ -81,7 +78,7 @@ if [ ! -d /tmp/xlinkkai ]; then
 	fi
     mkdir /tmp/xlinkkai
 fi
-chmod -R 777 ${DATA_DIR}
+chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Starting XLink Kai---"
 cd ${DATA_DIR}
