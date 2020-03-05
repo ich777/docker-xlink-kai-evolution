@@ -1,12 +1,12 @@
 kind: pipeline
-name: xlink-kai-evolution
+name: xlinkkaievolution
 
 steps:
 - name: docker
   image: plugins/docker
   settings:
     dockerfile: Dockerfile
-    repo: ich777/xlink-kai-evolution
+    repo: ich777/xlinkkaievolution
     username: ich777
     password:
       from_secret: docker_password
