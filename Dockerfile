@@ -27,5 +27,7 @@ ADD /scripts/ /opt/scripts/
 COPY /services /etc/services
 RUN chmod -R 770 /opt/scripts/
 
+EXPOSE 34522
+
 #Server Start
 ENTRYPOINT ["/opt/scripts/start.sh"]
