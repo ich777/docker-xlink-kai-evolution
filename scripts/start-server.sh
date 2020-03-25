@@ -1,7 +1,7 @@
 #!/bin/bash
 LAT_V="$(curl -s curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep version | cut -d '=' -f2)"
 CUR_V="$(find ${DATA_DIR} -name installedv_* | cut -d "_" -f2)"
-DL_URL="$(curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep platform-linux-x86 | cut -d '=' -f2)"
+DL_URL="$(curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep platform-linux-x86-localconfig | cut -d '=' -f2)"
 
 echo "---Checking if XLink Kai is installed and up-to-date---"
 if [ -z $DL_URL ]; then
@@ -58,13 +58,15 @@ fi
 
 echo "---Checking if 'kaiengine.conf' is present---"
 if [ ! -f ${DATA_DIR}/kaiengine.conf ]; then
-	echo "---Configuration file not found, downloading---"
+	echo "---Configuration file not found, creating---"
 	cd ${DATA_DIR}
-	if wget -q -nc --show-progress --progress=bar:force:noscroll https://github.com/ich777/docker-xlink-kai-evolution/raw/master/kaiengine.conf ; then
-		echo "---Successfully downloaded 'kaiengine.conf'---"
+	${DATA_DIR}/kaiengine --writedefaultconfig
+	sleep 2
+	if [ ! -f ${DATA_DIR}/kaiengine.conf ]; then
+		echo "---Can't create 'kaiengine.conf' putting server into sleep mode---"
+		sleep infinity
 	else
-		echo "---Can't download 'kaiengine.conf', putting server into sleep mode...---"
-        sleep infinity
+		echo "---Sucessfully created 'kaiengine.conf'---"
 	fi
 fi
 
