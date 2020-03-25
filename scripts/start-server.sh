@@ -75,10 +75,7 @@ sed -i '/kaiAdapter=/c\kaiAdapter='${INTERFACE_NAME}'' "${DATA_DIR}/kaiengine.co
 
 echo "---Preparing Server---"
 if [ ! -d /tmp/xlinkkai ]; then
-	if [ -d /tmp ]; then
-    	mkdir /tmp
-	fi
-    mkdir /tmp/xlinkkai
+	mkdir -p /tmp/xlinkkai
 fi
 chmod -R ${DATA_PERM} ${DATA_DIR}
 
