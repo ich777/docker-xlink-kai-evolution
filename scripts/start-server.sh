@@ -1,7 +1,7 @@
 #!/bin/bash
 LAT_V="$(curl -s curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep version | cut -d '=' -f2)"
 CUR_V="$(find ${DATA_DIR} -name installedv_* | cut -d "_" -f2)"
-DL_URL="$(curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep platform-linux-x86-localconf | cut -d '=' -f2)"
+DL_URL="$(curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep platform-linux-x86 | cut -d '=' -f2 | head -1)"
 
 echo "---Checking if XLink Kai is installed and up-to-date---"
 if [ -z $DL_URL ]; then
@@ -81,8 +81,4 @@ chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Starting XLink Kai---"
 cd ${DATA_DIR}
-while true; do
-	sudo ${DATA_DIR}/kaiengine --appdata ${DATA_DIR}/.xlinkkai --configfile ${DATA_DIR}/kaiengine.conf ${EXTRA_PARAMS}
-    echo "---KaiEngine crashed respawning---"
-	sleep 5
-done
+sudo ${DATA_DIR}/kaiengine --appdata ${DATA_DIR}/.xlinkkai --configfile ${DATA_DIR}/kaiengine.conf ${EXTRA_PARAMS}
