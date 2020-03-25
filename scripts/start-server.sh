@@ -82,6 +82,8 @@ if [ ! -d /tmp/xlinkkai ]; then
 fi
 chmod -R ${DATA_PERM} ${DATA_DIR}
 
+sleep infinity
+
 echo "---Starting XLink Kai---"
 cd ${DATA_DIR}
 while true; do
