@@ -9,6 +9,7 @@ RUN dpkg --add-architecture i386 && \
 
 ENV DATA_DIR="/xlinkkaievolution"
 ENV INTERFACE_NAME="eth0"
+ENV UDP_PORT=30000
 ENV EXTRA_PARAMS=""
 ENV UMASK=000
 ENV UID=99
