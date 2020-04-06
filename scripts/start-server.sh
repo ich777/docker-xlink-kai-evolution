@@ -76,8 +76,8 @@ fi
 echo "---Setting interface to: ${INTERFACE_NAME}---"
 sed -i '/kaiAdapter=/c\kaiAdapter='${INTERFACE_NAME}'' "${DATA_DIR}/kaiengine.conf"
 
-echo "---Setting interface to: ${UDP_PORT}---"
-sed -i '/kaiPort=/c\kaiAdapter='${UDP_PORT}'' "${DATA_DIR}/kaiengine.conf"
+echo "---Setting UDP Port to: ${UDP_PORT}---"
+sed -i '/kaiPort=/c\kaiPort='${UDP_PORT}'' "${DATA_DIR}/kaiengine.conf"
 
 echo "---Preparing Server---"
 if [ ! -d ${DATA_DIR}/.xlinkkai ]; then
