@@ -28,6 +28,7 @@ COPY /services /etc/services
 RUN chmod -R 770 /opt/scripts/
 
 EXPOSE 34522
+EXPOSE 30000/udp
 
 #Server Start
 ENTRYPOINT ["/opt/scripts/start.sh"]
