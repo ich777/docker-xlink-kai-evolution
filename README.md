@@ -20,7 +20,7 @@ Please also check out the website of XLink Kai Evolution: https://www.teamxlink.
 | GID | Group Identifier | 100 |
 
 
->**NOTE** This Docker must be started with the follwoing parameter "--privileged=true", "--cap-add=NET_ADMIN" and "--network='host'".
+>**NOTE** This Docker must be started with the follwoing parameter "--cap-add=NET_ADMIN" and "--network='host'".
 
 ## Run example
 ```
@@ -31,7 +31,6 @@ docker run --name XLink-Kai-Evolution -d \
     --env 'UID=99' \
     --env 'GID=100' \
     --volume /mnt/user/appdata/xlinkkaievolution:/xlinkkaievolution \
-    --privileged=true \
     --cap-add NET_ADMIN \
     --network='host' \
     --restart=unless-stopped \
