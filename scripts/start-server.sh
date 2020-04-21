@@ -56,9 +56,6 @@ else
 	fi
 fi
 
-echo "---Sleep zZz, container under construction---"
-sleep infinity
-
 echo "---Checking if 'kaiengine.conf' is present---"
 if [ ! -f ${DATA_DIR}/kaiengine.conf ]; then
 	echo "---Configuration file not found, creating---"
