@@ -77,11 +77,8 @@ echo "---Setting UDP Port to: ${UDP_PORT}---"
 sed -i '/kaiPort=/c\kaiPort='${UDP_PORT}'' "${DATA_DIR}/kaiengine.conf"
 
 echo "---Preparing Server---"
-if [ ! -d ${DATA_DIR}/.xlinkkai ]; then
-	mkdir -p ${DATA_DIR}/.xlinkkai
-fi
 chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Starting XLink Kai---"
 cd ${DATA_DIR}
-sudo ${DATA_DIR}/kaiengine --appdata ${DATA_DIR}/.xlinkkai --configfile ${DATA_DIR}/kaiengine.conf ${EXTRA_PARAMS}
+sudo ${DATA_DIR}/kaiengine --configfile ${DATA_DIR}/kaiengine.conf ${EXTRA_PARAMS}
