@@ -77,8 +77,11 @@ echo "---Setting UDP Port to: ${UDP_PORT}---"
 sed -i '/kaiPort=/c\kaiPort='${UDP_PORT}'' "${DATA_DIR}/kaiengine.conf"
 
 echo "---Preparing Server---"
+echo "---Checking for old logs---"
+find ${SERVER_DIR} -name "masterLog.*" -exec rm -f {} \;
 chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Starting XLink Kai---"
 cd ${DATA_DIR}
-sudo ${DATA_DIR}/kaiengine --configfile ${DATA_DIR}/kaiengine.conf ${EXTRA_PARAMS}
+screen -S XLinkKai -L -Logfile ${DATA_DIR}/masterLog.0 -d -m sudo ${DATA_DIR}/kaiengine --configfile ${DATA_DIR}/kaiengine.conf
+tail -f $DATA_DIR/masterLog.0
