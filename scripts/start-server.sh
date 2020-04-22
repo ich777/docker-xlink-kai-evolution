@@ -84,4 +84,4 @@ chmod -R ${DATA_PERM} ${DATA_DIR}
 echo "---Starting XLink Kai---"
 cd ${DATA_DIR}
 screen -S XLinkKai -L -Logfile ${DATA_DIR}/masterLog.0 -d -m sudo ${DATA_DIR}/kaiengine --configfile ${DATA_DIR}/kaiengine.conf
-tail -f $DATA_DIR/masterLog.0
+tail -f ${DATA_DIR}/masterLog.0
