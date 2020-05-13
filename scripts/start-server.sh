@@ -85,4 +85,5 @@ echo "---Starting XLink Kai---"
 cd ${DATA_DIR}
 screen -S XLinkKai -L -Logfile ${DATA_DIR}/masterLog.0 -d -m sudo ${DATA_DIR}/kaiengine --configfile ${DATA_DIR}/kaiengine.conf
 sleep 2
+screen -S watchdog -d -m /opt/scripts/start-watchdog.sh
 tail -f ${DATA_DIR}/masterLog.0
