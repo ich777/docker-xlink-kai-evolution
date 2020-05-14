@@ -1,9 +1,8 @@
 #!/bin/bash
+killpid="$(pidof kaiengine)"
 while true
 do
-	if ! pgrep kaiengine >/dev/null ; then
-		kill "$(pidof tail)"
-		exit 0
-	fi
-	sleep 5
+	tail --pid=$killpid -f /dev/null
+	kill "$(pidof tail)"
+	exit 0
 done
