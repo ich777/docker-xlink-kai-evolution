@@ -80,6 +80,7 @@ echo "---Preparing Server---"
 echo "---Checking for old logs---"
 find ${DATA_DIR} -name "masterLog.*" -exec rm -f {} \;
 chmod -R ${DATA_PERM} ${DATA_DIR}
+screen -wipe 2&>/dev/null
 
 echo "---Starting XLink Kai---"
 cd ${DATA_DIR}
