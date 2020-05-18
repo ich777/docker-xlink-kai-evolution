@@ -5,8 +5,12 @@ DL_URL="$(curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain |
 
 echo "---Checking if XLink Kai is installed and up-to-date---"
 if [ -z $DL_URL ]; then
-	echo "---Can't get download URL, putting server into sleep mode---"
-    sleep infinity
+	if [ -f ${DATA_DIR}/kaiengine ]; then
+		echo "---'kaiengine' found but can't get download URL, continuning...---"
+	else
+    	echo "---Can't get download URL, putting server into sleep mode---"
+		sleep infinity
+	fi
 else
 	if [ ! -f ${DATA_DIR}/kaiengine ]; then
 		echo "---XLink Kai not installed, downloading---"
