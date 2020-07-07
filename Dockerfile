@@ -4,7 +4,7 @@ LABEL maintainer="admin@minenet.at"
 
 RUN dpkg --add-architecture i386 && \
 	apt-get update && \
-	apt-get -y install --no-install-recommends sudo libc6 curl screen && \
+	apt-get -y install --no-install-recommends sudo libc6 curl screen jq && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/xlinkkaievolution"
