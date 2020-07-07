@@ -31,7 +31,7 @@ else
 		    	echo "---Version missmatch currently installed: v$CUR_V, installing: v$LAT_V---"
                 rm ${DATA_DIR}/README
                 rm ${DATA_DIR}/kaiengine
-                rm ${DATA_DIR}/runvorever.sh
+                rm ${DATA_DIR}/runforever.sh
                 rm ${DATA_DIR}/installedv_*
                 cd ${DATA_DIR}
           		if wget -q -nc --show-progress --progress=bar:force:noscroll -O kaiengine.tar.gz "$DL_URL" ; then
