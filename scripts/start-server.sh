@@ -78,8 +78,6 @@ find ${DATA_DIR} -name "masterLog.*" -exec rm -f {} \;
 chmod -R ${DATA_PERM} ${DATA_DIR}
 screen -wipe 2&>/dev/null
 
-sleep infinity
-
 echo "---Starting XLink Kai---"
 cd ${DATA_DIR}
 screen -S XLinkKai -L -Logfile ${DATA_DIR}/masterLog.0 -d -m sudo ${DATA_DIR}/kaiengine --configfile ${DATA_DIR}/kaiengine.conf
