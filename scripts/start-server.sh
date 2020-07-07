@@ -1,7 +1,7 @@
 #!/bin/bash
-LAT_V="$(curl -s curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep version | cut -d '=' -f2)"
+LAT_V="$(curl -s https://www.teamxlink.co.uk/api/versionQuery.php| jq '.' | grep version | head -1 | cut -d '"' -f4)"
 CUR_V="$(find ${DATA_DIR} -name installedv_* | cut -d "_" -f2)"
-DL_URL="$(curl -s https://www.teamxlink.co.uk/connector/versionQuery.php?plain | grep platform-linux-x86 | cut -d '=' -f2 | head -1)"
+DL_URL="$(curl -s https://www.teamxlink.co.uk/api/versionQuery.php| jq '.' | grep headless.debian.x86_64.tar.gz | cut -d '"' -f4)"
 
 echo "---Checking if XLink Kai is installed and up-to-date---"
 if [ -z $DL_URL ]; then
@@ -21,12 +21,8 @@ else
 			echo "---Can't download XLink Kai, putting server into sleep mode...---"
 	        sleep infinity
 		fi
-        tar -xvf ${DATA_DIR}/kaiengine.tar.gz
-        cd kaiEngine-*
-        mv ${DATA_DIR}/kaiEngine-*/* ${DATA_DIR}/
-        cd ${DATA_DIR}
+        tar -C ${DATA_DIR} --strip-components=1 -xvf ${DATA_DIR}/kaiengine.tar.gz
 		rm ${DATA_DIR}/kaiengine.tar.gz
-        rm -R ${DATA_DIR}/kaiEngine-*
 		touch ${DATA_DIR}/installedv_$LAT_V
         CUR_V="$(find ${DATA_DIR} -name installedv_* | cut -d "_" -f2)"
 	else
@@ -44,12 +40,8 @@ else
 					echo "---Can't download XLink Kai, putting server into sleep mode...---"
 	        		sleep infinity
 				fi
-                tar -xvf ${DATA_DIR}/kaiengine.tar.gz
-            	cd kaiEngine-*
-            	mv ${DATA_DIR}/kaiEngine-*/* ${DATA_DIR}/
-            	cd ${DATA_DIR}
+                tar -C ${DATA_DIR} --strip-components=1 -xvf ${DATA_DIR}/kaiengine.tar.gz
 				rm ${DATA_DIR}/kaiengine.tar.gz
-            	rm -R ${DATA_DIR}/kaiEngine-*
 				touch ${DATA_DIR}/installedv_$LAT_V
 			else
             	echo "---You are currently running the latest version: v$LAT_V---"
