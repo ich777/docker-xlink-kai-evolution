@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "---Container under construction, Sleep zZz---"
+sleep infinity
+
 LAT_V="$(curl -s https://www.teamxlink.co.uk/api/versionQuery.php| jq '.' | grep version | head -1 | cut -d '"' -f4)"
 CUR_V="$(find ${DATA_DIR} -name installedv_* | cut -d "_" -f2)"
 DL_URL="$(curl -s https://www.teamxlink.co.uk/api/versionQuery.php| jq '.' | grep headless.debian.x86_64.tar.gz | cut -d '"' -f4)"
