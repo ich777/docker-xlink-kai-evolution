@@ -1,7 +1,7 @@
 #!/bin/bash
 LAT_V="$(curl -s https://teamxlink.co.uk/api/v1/releases/legacy | jq '.' | grep 'version' | cut -d '"' -f4)"
 CUR_V="$(find ${DATA_DIR} -name installedv_* | cut -d "_" -f2)"
-DL_URL="$(curl -s https://teamxlink.co.uk/api/v1/releases/legacy | jq '.platforms.linux' | grep "headless.debian.x86_64.tar.gz" | cut -d '"' -f4)"
+DL_URL="https://github.com/Team-XLink/releases/releases/download/v7.4.39/kaiEngine-7.4.39-539601671.headless.debian.x86_64.tar.gz"
 
 echo "---Checking if XLink Kai is installed and up-to-date---"
 if [ -z $DL_URL ]; then
