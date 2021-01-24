@@ -1,9 +1,8 @@
-FROM ich777/debian-baseimage:armv7
+FROM ich777/debian-baseimage
 
 LABEL maintainer="admin@minenet.at"
 
-RUN dpkg --add-architecture i386 && \
-	apt-get update && \
+RUN	apt-get update && \
 	apt-get -y install --no-install-recommends sudo libc6 curl screen jq && \
 	rm -rf /var/lib/apt/lists/*
 
